@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { ENGINEERING_DISCIPLINES } from '../data/heroData';
 import { MobileWheelPicker } from './MobileWheelPicker';
 import { useRouter } from '../router';
-import { Layers, ArrowRight } from 'lucide-react';
+import { Layers, ArrowRight, ChevronDown } from 'lucide-react';
 
 interface MobileHeroProps {
   onStartProject: () => void;
@@ -314,7 +314,7 @@ export const MobileHero: React.FC<MobileHeroProps> = ({ onStartProject, onExplor
           <div
             ref={heroContentRef}
             id="hero-mobile"
-            className="w-full max-w-md mx-auto flex flex-col items-center text-center shrink-0 pt-3.5 sm:pt-4 transition-transform duration-75 ease-out"
+            className="w-full max-w-md mx-auto flex flex-col items-center text-center shrink-0 pt-2 sm:pt-3 transition-transform duration-75 ease-out"
             style={{
               opacity: reducedMotion ? 1 : contentOpacity,
               transform: reducedMotion
@@ -324,7 +324,7 @@ export const MobileHero: React.FC<MobileHeroProps> = ({ onStartProject, onExplor
             }}
           >
             {/* 1. Eyebrow Status Badge */}
-            <div className="inline-flex items-center gap-2 border border-[#c4c7c7] px-3 py-0.5 rounded-full bg-white/95 backdrop-blur-xs shadow-xs mb-2">
+            <div className="inline-flex items-center gap-2 border border-[#c4c7c7] px-3 py-0.5 rounded-full bg-white/95 backdrop-blur-xs shadow-xs mb-1.5">
               <span className="w-2 h-2 rounded-full bg-[#c8f179] animate-pulse shadow-[0_0_8px_#c8f179]" />
               <span className="font-mono-tech text-[10px] sm:text-xs text-[#444748] uppercase tracking-wider font-semibold">
                 End-to-End Product Engineering Studio
@@ -334,28 +334,28 @@ export const MobileHero: React.FC<MobileHeroProps> = ({ onStartProject, onExplor
             {/* 2. Main Hero Heading */}
             <h1
               id="hero-title-mobile"
-              className="font-display-tech text-[28px] sm:text-4xl leading-[1.12] font-bold text-[#000000] tracking-tight max-w-md"
+              className="font-display-tech text-[25px] sm:text-3xl leading-[1.12] font-bold text-[#000000] tracking-tight max-w-md"
             >
               <div>MAKE YOUR IDEA</div>
               <div className="mt-0.5">
                 INTO A{' '}
-                <span className="text-[#476800] bg-[#daf396] px-2.5 py-0.5 rounded-sm inline-block font-extrabold shadow-2xs">
+                <span className="text-[#476800] bg-[#daf396] px-2 py-0.5 rounded-sm inline-block font-extrabold shadow-2xs">
                   PRODUCT.
                 </span>
               </div>
             </h1>
 
             {/* 3. Brief Supporting Description */}
-            <p className="text-xs sm:text-sm text-[#444748] max-w-sm mx-auto mt-1.5 leading-relaxed font-normal px-2">
+            <p className="text-xs text-[#444748] max-w-sm mx-auto mt-1 leading-relaxed font-normal px-2 line-clamp-2">
               We don&apos;t just build projects or ordinary websites. We engineer complete technology systems and products from concept to mass production.
             </p>
 
             {/* 4. Discipline Tags / Chips (Consistent with Desktop) */}
-            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-2 max-w-md mx-auto px-1">
+            <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 mt-1.5 max-w-md mx-auto px-1">
               {ENGINEERING_DISCIPLINES.map((item) => (
                 <span
                   key={item}
-                  className="font-mono-tech text-[9px] sm:text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-white border border-[#c4c7c7]/70 text-[#2e312f] shadow-2xs font-medium flex items-center gap-1.5"
+                  className="font-mono-tech text-[9px] uppercase tracking-wider px-2 py-0.5 rounded bg-white border border-[#c4c7c7]/70 text-[#2e312f] shadow-2xs font-medium flex items-center gap-1.5"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#476800]" />
                   {item}
@@ -364,15 +364,15 @@ export const MobileHero: React.FC<MobileHeroProps> = ({ onStartProject, onExplor
             </div>
 
             {/* 5. Touch-friendly CTA Buttons (Stacked: Start a Project, See Our Work below) */}
-            <div className="flex flex-col items-center justify-center gap-2 mt-2.5 sm:mt-3 w-full max-w-[280px]">
+            <div className="flex flex-col items-center justify-center gap-1.5 mt-2 sm:mt-2.5 w-full max-w-[270px]">
               <button
                 onClick={onStartProject}
                 id="hero-start-project-btn-mobile"
-                className="cosmic-project-btn text-sm sm:text-base py-2.5 px-5 shadow-xs w-full flex items-center justify-center gap-2"
+                className="cosmic-project-btn text-xs sm:text-sm py-2 px-5 shadow-xs w-full flex items-center justify-center gap-2"
               >
                 <svg
-                  height="18"
-                  width="18"
+                  height="16"
+                  width="16"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -388,7 +388,7 @@ export const MobileHero: React.FC<MobileHeroProps> = ({ onStartProject, onExplor
               <button
                 onClick={onExploreWork || (() => navigate('/works'))}
                 id="hero-see-our-work-btn-mobile"
-                className="inline-flex items-center justify-center gap-2 bg-[#000000] text-[#c8f179] hover:bg-[#1a1a1a] active:scale-95 font-mono-tech text-xs uppercase tracking-wider font-bold px-4 py-2.5 rounded-xl border border-black shadow-sm transition-all duration-200 cursor-pointer group w-full"
+                className="inline-flex items-center justify-center gap-2 bg-[#000000] text-[#c8f179] hover:bg-[#1a1a1a] active:scale-95 font-mono-tech text-xs uppercase tracking-wider font-bold px-4 py-2 rounded-xl border border-black shadow-sm transition-all duration-200 cursor-pointer group w-full"
                 title="Explore our completed engineering projects"
               >
                 <Layers className="w-3.5 h-3.5 text-[#c8f179]" />
@@ -402,14 +402,14 @@ export const MobileHero: React.FC<MobileHeroProps> = ({ onStartProject, onExplor
           {/* Centered with consistent camera distance, full robot visible (base and gripper) */}
           <div
             ref={robotWrapperRef}
-            className="w-full max-w-[400px] mx-auto flex items-center justify-center relative transition-transform duration-100 ease-out pb-1"
+            className="w-full max-w-[360px] mx-auto flex items-center justify-center relative transition-transform duration-100 ease-out"
             style={{
               transform: reducedMotion
                 ? 'none'
                 : `translateY(${robotCenterOffset}px)`,
             }}
           >
-            <div className="w-full aspect-[540/304] max-h-[220px] sm:max-h-[260px] flex items-center justify-center relative px-2">
+            <div className="w-full aspect-[540/304] max-h-[175px] sm:max-h-[220px] flex items-center justify-center relative px-2">
               <canvas
                 ref={canvasRef}
                 className="w-full h-full object-contain select-none pointer-events-none"
@@ -422,13 +422,14 @@ export const MobileHero: React.FC<MobileHeroProps> = ({ onStartProject, onExplor
             </div>
           </div>
 
-          {/* C. SCROLL TO EXPLORE MORE CUE */}
+          {/* C. SCROLL TO EXPLORE CUE (Sentence & Icon) */}
           <div
-            className="w-full text-center flex items-center justify-center gap-2 font-mono-tech text-[10px] text-[#444748] tracking-widest uppercase pt-1 pb-1 pointer-events-none transition-opacity duration-300 shrink-0 z-20"
+            className="w-full flex items-center justify-center gap-1.5 font-mono-tech text-[10px] sm:text-xs text-[#2e312f] tracking-widest uppercase pb-2 pt-1 pointer-events-none transition-opacity duration-300 shrink-0 z-20"
             style={{ opacity: reducedMotion ? 1 : Math.max(0, contentOpacity) }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#476800] animate-bounce" />
-            <span>Scroll to explore more</span>
+            <span className="font-bold">Scroll to explore</span>
+            <ChevronDown className="w-3.5 h-3.5 text-[#476800] animate-bounce ml-0.5" />
           </div>
         </div>
       </div>
