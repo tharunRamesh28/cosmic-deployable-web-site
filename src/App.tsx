@@ -7,6 +7,7 @@ import { Hero } from './components/Hero';
 import { PhaseSequence } from './components/PhaseSequence';
 import { CapabilitiesCore } from './components/CapabilitiesCore';
 import { SmartDripShowcase } from './components/SmartDripShowcase';
+import { TeamBehindWorkSection } from './components/TeamBehindWorkSection';
 import { PricingSection } from './components/PricingSection';
 import { ProofOfScaleSection } from './components/ProofOfScaleSection';
 import { ScrollReveal } from './components/ScrollReveal';
@@ -242,7 +243,12 @@ function AppContent() {
                     <SmartDripShowcase onStartProject={handleStartProject} />
                   </ScrollReveal>
 
-                  {/* Section 4: Transparent Engagement Models */}
+                  {/* Section 4: The Team Behind Our Work */}
+                  <ScrollReveal>
+                    <TeamBehindWorkSection />
+                  </ScrollReveal>
+
+                  {/* Section 5: Transparent Engagement Models */}
                   <ScrollReveal>
                     <PricingSection
                       onSelectTier={(tier) => handleStartProject(undefined, tier)}

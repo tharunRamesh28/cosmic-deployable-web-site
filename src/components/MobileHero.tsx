@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { ENGINEERING_DISCIPLINES } from '../data/heroData';
 import { MobileWheelPicker } from './MobileWheelPicker';
 import { useRouter } from '../router';
-import { Users, ArrowRight } from 'lucide-react';
+import { Layers, ArrowRight } from 'lucide-react';
 
 interface MobileHeroProps {
   onStartProject: () => void;
@@ -13,7 +13,7 @@ interface MobileHeroProps {
 const TOTAL_FRAMES = 300;
 const MAX_CONCURRENT_LOADS = 4;
 
-export const MobileHero: React.FC<MobileHeroProps> = ({ onStartProject }) => {
+export const MobileHero: React.FC<MobileHeroProps> = ({ onStartProject, onExploreWork }) => {
   const { navigate } = useRouter();
   const heroTrackRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
@@ -363,12 +363,12 @@ export const MobileHero: React.FC<MobileHeroProps> = ({ onStartProject }) => {
               ))}
             </div>
 
-            {/* 5. Touch-friendly CTA Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-2.5 sm:mt-3">
+            {/* 5. Touch-friendly CTA Buttons (Stacked: Start a Project, See Our Work below) */}
+            <div className="flex flex-col items-center justify-center gap-2 mt-2.5 sm:mt-3 w-full max-w-[280px]">
               <button
                 onClick={onStartProject}
                 id="hero-start-project-btn-mobile"
-                className="cosmic-project-btn text-sm sm:text-base py-2.5 px-5 shadow-xs"
+                className="cosmic-project-btn text-sm sm:text-base py-2.5 px-5 shadow-xs w-full flex items-center justify-center gap-2"
               >
                 <svg
                   height="18"
@@ -386,13 +386,13 @@ export const MobileHero: React.FC<MobileHeroProps> = ({ onStartProject }) => {
               </button>
 
               <button
-                onClick={() => navigate('/about')}
-                id="hero-meet-team-btn-mobile"
-                className="inline-flex items-center gap-2 bg-[#000000] text-[#c8f179] hover:bg-[#1a1a1a] active:scale-95 font-mono-tech text-xs uppercase tracking-wider font-bold px-4 py-2.5 rounded-xl border border-black shadow-sm transition-all duration-200 cursor-pointer group"
-                title="Meet our engineering team"
+                onClick={onExploreWork || (() => navigate('/works'))}
+                id="hero-see-our-work-btn-mobile"
+                className="inline-flex items-center justify-center gap-2 bg-[#000000] text-[#c8f179] hover:bg-[#1a1a1a] active:scale-95 font-mono-tech text-xs uppercase tracking-wider font-bold px-4 py-2.5 rounded-xl border border-black shadow-sm transition-all duration-200 cursor-pointer group w-full"
+                title="Explore our completed engineering projects"
               >
-                <Users className="w-3.5 h-3.5 text-[#c8f179]" />
-                <span>MEET OUR TEAM</span>
+                <Layers className="w-3.5 h-3.5 text-[#c8f179]" />
+                <span>SEE OUR WORK</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#c8f179] group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -420,6 +420,15 @@ export const MobileHero: React.FC<MobileHeroProps> = ({ onStartProject }) => {
                 }}
               />
             </div>
+          </div>
+
+          {/* C. SCROLL TO EXPLORE MORE CUE */}
+          <div
+            className="w-full text-center flex items-center justify-center gap-2 font-mono-tech text-[10px] text-[#444748] tracking-widest uppercase pt-1 pb-1 pointer-events-none transition-opacity duration-300 shrink-0 z-20"
+            style={{ opacity: reducedMotion ? 1 : Math.max(0, contentOpacity) }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#476800] animate-bounce" />
+            <span>Scroll to explore more</span>
           </div>
         </div>
       </div>

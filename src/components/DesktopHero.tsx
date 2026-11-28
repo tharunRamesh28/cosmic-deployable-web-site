@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { CursorGrid } from './CursorGrid';
 import { VALUE_PROPOSITIONS, ENGINEERING_DISCIPLINES } from '../data/heroData';
 import { useRouter } from '../router';
-import { Users, ArrowRight } from 'lucide-react';
+import { Layers, ArrowRight } from 'lucide-react';
 
 interface DesktopHeroProps {
   onStartProject: () => void;
@@ -13,7 +13,7 @@ interface DesktopHeroProps {
 const TOTAL_FRAMES = 300;
 const MAX_CONCURRENT_LOADS = 12;
 
-export const DesktopHero: React.FC<DesktopHeroProps> = ({ onStartProject }) => {
+export const DesktopHero: React.FC<DesktopHeroProps> = ({ onStartProject, onExploreWork }) => {
   const { navigate } = useRouter();
   const trackRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
@@ -488,7 +488,7 @@ export const DesktopHero: React.FC<DesktopHeroProps> = ({ onStartProject }) => {
               ))}
             </div>
 
-            {/* CTA Buttons: Start a Project & Meet Our Team */}
+            {/* CTA Buttons: Start a Project & See Our Work */}
             <div className="flex flex-wrap items-center justify-center gap-3 mt-5">
               <button
                 onClick={onStartProject}
@@ -511,13 +511,13 @@ export const DesktopHero: React.FC<DesktopHeroProps> = ({ onStartProject }) => {
               </button>
 
               <button
-                onClick={() => navigate('/about')}
-                id="hero-meet-team-btn"
+                onClick={onExploreWork || (() => navigate('/works'))}
+                id="hero-see-our-work-btn"
                 className="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-[#000000] text-[#c8f179] hover:bg-[#1a1a1a] active:scale-95 border border-black font-mono-tech text-xs uppercase tracking-wider font-bold transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 cursor-pointer group"
-                title="Meet the engineers behind Zen Tech"
+                title="Explore our completed engineering projects"
               >
-                <Users className="w-4 h-4 text-[#c8f179]" />
-                <span>MEET OUR TEAM</span>
+                <Layers className="w-4 h-4 text-[#c8f179]" />
+                <span>SEE OUR WORK</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#c8f179] group-hover:translate-x-1 transition-transform duration-200" />
               </button>
             </div>
